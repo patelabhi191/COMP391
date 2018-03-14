@@ -772,6 +772,11 @@ Prefab:
       propertyPath: m_Name
       value: Explosion-2_0 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114019420952611986, guid: b879c30a6a3a01f4c8efe599982982f8,
+        type: 2}
+      propertyPath: explosionAsteroid
+      value: 
+      objectReference: {fileID: 61893612}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b879c30a6a3a01f4c8efe599982982f8, type: 2}
   m_IsPrefabParent: 0
