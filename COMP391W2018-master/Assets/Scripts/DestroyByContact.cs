@@ -6,10 +6,20 @@ public class DestroyByContact : MonoBehaviour {
 
     public GameObject explosionAsteroid;
 	public GameObject explosionSpaceShip;
+	public int scoreValue=10;
+	private GameController gamecontrollerscript;
 
 	// Use this for initialization
 	void Start () {
-		
+		GameObject gamecontrollerobject = GameObject.FindWithTag ("GameController");
+		if (gamecontrollerobject != null) 
+		{
+			gamecontrollerscript = gamecontrollerobject.GetComponent<GameController> ();
+		}
+		if (gamecontrollerobject == null) 
+		{
+			Debug.Log ("No script attached");
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other)
@@ -17,6 +27,7 @@ public class DestroyByContact : MonoBehaviour {
 		if (other.tag == "Player") 
 		{
 			Instantiate (explosionSpaceShip, other.transform.position, other.transform.rotation);
+			gamecontrollerscript.GameOver ();
 		}
 
         if(other.tag == "Boundary")

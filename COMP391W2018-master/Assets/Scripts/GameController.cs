@@ -10,10 +10,14 @@ public class GameController : MonoBehaviour {
 	public float spawnWait;
 	public float startWait;
 	public float wavewait;
+	private bool gameOver;
+	private bool restart;
+	private int score;
 
 	// Use this for initialization
 	void Start () 
 	{
+		score = 0;
 		StartCoroutine (SpawnWaves());	
 	}
 	
@@ -37,7 +41,21 @@ public class GameController : MonoBehaviour {
 				yield return new WaitForSeconds (spawnWait);
 			}
 			yield return new WaitForSeconds (wavewait);
+			if (gameOver) 
+			{
+				break;
+			}
 		}
 	}
 
+	public void AddScore(int newScoreValue)
+	{
+		score += newScoreValue;
+		Debug.Log ("Score is " + score);
+	}
+	public void GameOver()
+	{
+		Debug.Log ("Game Ends");
+		gameOver=true;
+	}
 }
