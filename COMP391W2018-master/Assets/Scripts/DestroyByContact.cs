@@ -28,6 +28,7 @@ public class DestroyByContact : MonoBehaviour {
 		{
 			Instantiate (explosionSpaceShip, other.transform.position, other.transform.rotation);
 			gamecontrollerscript.GameOver ();
+			gamecontrollerscript.end.text="Game Over";
 		}
 
         if(other.tag == "Boundary")
@@ -37,7 +38,7 @@ public class DestroyByContact : MonoBehaviour {
         }
 
         Instantiate(explosionAsteroid, this.transform.position, this.transform.rotation);
-
+		gamecontrollerscript.AddScore (scoreValue);
         Destroy(other.gameObject); // Destroy the other thing (laser)
         Destroy(this.gameObject); // Destroying this thing (the asteroid)
     }

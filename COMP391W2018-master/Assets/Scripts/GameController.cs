@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -14,17 +16,34 @@ public class GameController : MonoBehaviour {
 	private bool restart;
 	private int score;
 
+	public Text Score;
+	public Text restat;
+	public Text end;
+
 	// Use this for initialization
 	void Start () 
 	{
 		score = 0;
-		StartCoroutine (SpawnWaves());	
+		StartCoroutine (SpawnWaves());
+		restat.text = " ";
+		end.text = " ";
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if (restart) 
+		{
+			if (Input.GetKeyDown (KeyCode.R)) 
+			{
+				SceneManager.LoadScene ("Spaceshooter");
+			//	SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex); another way to load scene
+			}
+		}
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
+			Application.Quit ();
+		}
 	}
 
 	IEnumerator SpawnWaves()
@@ -45,13 +64,22 @@ public class GameController : MonoBehaviour {
 			{
 				break;
 			}
+		}if (gameOver) 
+		{
+			restat.text="Press R to Restart";
+
 		}
+	}
+	void UpdateScore()
+	{
+		Score.text = "Score- " + score;
 	}
 
 	public void AddScore(int newScoreValue)
 	{
 		score += newScoreValue;
 		Debug.Log ("Score is " + score);
+		UpdateScore ();
 	}
 	public void GameOver()
 	{
