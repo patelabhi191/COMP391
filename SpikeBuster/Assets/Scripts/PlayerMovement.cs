@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour {
     public Text live;
     public float speed;
     public GameObject endP1;
-	public Animator anim;
+	Animator anim;
 	public AudioSource Born;
+    public GameObject gameOver;
 
 	private float xaxis;
 	private float yaxis;
@@ -58,7 +59,9 @@ public class PlayerMovement : MonoBehaviour {
         PlayerPrefs.SetInt("Lives",lives);
         if(lives <= 0)
         {
+            gameOver.GetComponent<GameWinScript>().GameOver();
             Destroy(this.gameObject);
+
         }
         else
         {
